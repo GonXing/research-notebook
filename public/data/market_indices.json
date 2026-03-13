@@ -1,0 +1,29 @@
+{
+  "updated_at": "2026-03-13T02:25:22.561756+00:00",
+  "indices": {
+    "SPY": {
+      "symbol": "SPY",
+      "label": "S&P 500 (SPY)",
+      "price": 666.06,
+      "change": -10.27,
+      "change_pct": -1.52,
+      "direction": "down"
+    },
+    "DIA": {
+      "symbol": "DIA",
+      "label": "Dow Jones (DIA)",
+      "price": 467.48,
+      "change": -7.33,
+      "change_pct": -1.54,
+      "direction": "down"
+    },
+    "QQQ": {
+      "symbol": "QQQ",
+      "label": "NASDAQ (QQQ)",
+      "price": 597.26,
+      "change": -10.43,
+      "change_pct": -1.72,
+      "direction": "down"
+    }
+  }
+}
