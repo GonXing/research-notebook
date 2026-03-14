@@ -39,13 +39,13 @@ export const PostDetail = () => {
   const backPath = category ? `/category/${category.id}` : '/';
 
   return (
-    <div className="animate-in fade-in duration-500">
+    <div className="post-shell animate-in fade-in duration-500">
       <div className="mb-8">
         <Link to={backPath} className="inline-flex items-center text-sm font-mono text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] transition-colors mb-6">
           <ArrowLeft className="w-4 h-4 mr-1" />
           {category ? `返回 ${category.label}` : '返回列表'}
         </Link>
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.metadata.title}</h1>
+        <h1 className="text-3xl md:text-4xl xl:text-5xl font-bold mb-4">{post.metadata.title}</h1>
         <div className="flex flex-wrap items-center gap-4 text-sm font-mono text-[var(--color-text-muted)] pb-6 border-b border-[var(--color-border-dark)]">
           <time>{post.metadata.date ? new Date(post.metadata.date).toLocaleDateString('zh-CN') : ''}</time>
           {post.metadata.tags && post.metadata.tags.length > 0 && (

@@ -72,7 +72,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
       )}
 
       <aside 
-        className={`fixed md:sticky top-0 left-0 z-50 h-screen w-64 bg-[var(--color-surface-dark)] border-r border-[var(--color-border-dark)] shrink-0 flex flex-col transform transition-transform duration-300 ease-in-out md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed md:sticky top-0 left-0 z-50 h-screen w-64 bg-[var(--color-surface-dark)] border-r border-[var(--color-border-dark)] shrink-0 flex flex-col overflow-hidden transform transition-transform duration-300 ease-in-out md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
         style={{ boxShadow: '1px 0 15px -10px rgba(96, 165, 250, 0.4)' }}
       >
         <div className="hidden md:block border-b border-[var(--color-border-dark)] px-4 py-3">
@@ -213,5 +213,4 @@ const IconLink = ({ to, href, icon, label }: IconLinkProps) => {
   if (to) return <Link to={to}>{content}</Link>;
   return <a href={href} target="_blank" rel="noopener noreferrer">{content}</a>;
 };
-
 

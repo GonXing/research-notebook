@@ -13,7 +13,7 @@ interface PostViewerProps {
 
 export const PostViewer = ({ content, category }: PostViewerProps) => {
   return (
-    <article className="prose prose-invert max-w-none">
+    <article className="prose prose-invert post-prose max-w-none">
       <ReactMarkdown
         remarkPlugins={[remarkMath, remarkGfm]}
         rehypePlugins={[rehypeSlug, rehypeKatex, rehypeHighlight]}
