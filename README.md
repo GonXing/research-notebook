@@ -1,73 +1,112 @@
-# React + TypeScript + Vite
+# Jasin's Research Notebook
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个面向量化研究与个人知识管理的 React 个人门户项目，用来统一展示研究笔记、实验记录、学习路径与行情信息。
 
-Currently, two official plugins are available:
+## 项目定位
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+这个项目不是通用博客模板，而是一个偏研究工作流的个人站点，核心目标包括：
 
-## React Compiler
+- 展示量化研究笔记与方法论沉淀
+- 管理计算机实验、MFE 申请路径与日常随记
+- 对接本地 Obsidian 写作流程
+- 在前端页面中同步展示市场行情与研究状态
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 技术栈
 
-## Expanding the ESLint configuration
+- 前端框架：React + TypeScript + Vite
+- 样式系统：Tailwind CSS
+- 动画：Framer Motion
+- 图标：Lucide React
+- Markdown 渲染：React Markdown
+- 数学公式：KaTeX
+- 代码高亮：highlight.js
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 主要功能
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- 多栏目笔记展示
+- 基于本地 `posts/` 目录的 Markdown 内容读取
+- 支持 Obsidian 常见写作方式
+- 支持 KaTeX 数学公式与代码高亮
+- 支持私密栏目密码访问控制
+- 全局市场行情条展示
+- 宽屏优化的研究阅读界面
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 目录结构
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+personal-portfolio/
+├── posts/                  # Markdown 笔记内容
+├── public/                 # 静态资源
+├── scripts/                # 部署脚本
+├── src/
+│   ├── components/         # 页面与功能组件
+│   ├── pages/              # 路由页面
+│   ├── utils/              # 数据读取与工具函数
+│   └── index.css           # 全局样式
+├── Deploy.command          # 一键部署入口
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 笔记写作流程
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+日常内容维护以 `posts/` 为核心：
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. 在对应分类目录下新增或修改 `.md` 文件
+2. 使用 Front Matter 补充标题、日期、标签等信息
+3. 本地预览或直接执行部署脚本
+4. 刷新网页查看更新结果
+
+项目已经内置对隐藏目录、模板目录等无效内容的过滤逻辑，避免将 Obsidian 辅助文件直接展示到网站上。
+
+## 本地开发
+
+安装依赖：
+
+```bash
+npm install
 ```
+
+启动开发环境：
+
+```bash
+npm run dev
+```
+
+构建生产版本：
+
+```bash
+npm run build
+```
+
+## 部署方式
+
+项目提供了一套自动化部署脚本：
+
+- 入口文件：`Deploy.command`
+- 实际脚本：`scripts/deploy.sh`
+
+部署流程会自动执行：
+
+1. 读取服务器配置与密钥
+2. 本地构建前端产物
+3. 将 `dist/`、`posts/`、脚本文件等同步到服务器
+
+如果你已经配置好 `.research_notebook_secrets.env`，通常只需要运行：
+
+```bash
+./Deploy.command
+```
+
+## 数据与安全说明
+
+- `posts/` 中的研究笔记可作为网站内容源
+- 私密栏目通过前端密码门控进行访问限制
+- `.gitignore` 已配置忽略敏感文件与不需要纳入版本控制的内容
+- 部署脚本已避免本地旧行情数据覆盖服务器实时数据
+
+## 后续方向
+
+- 优化大规模笔记下的加载性能
+- 增加更细粒度的文章导航与目录能力
+- 持续增强量化研究展示模块与自动化数据看板
+
